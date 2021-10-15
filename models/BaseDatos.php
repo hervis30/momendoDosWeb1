@@ -2,10 +2,10 @@
 class BaseDatos
 {
     //Atributos=Variables=Datos
-    public $usuario = "roots";
+    public $usuario = "root";
     public $paswordBD = "";
     public $servidorBD = "mysql:host=localhost;";
-    public $nombreBD = "dbname=tiendabello";
+    public $nombreBD = "dbname=tiendita";
 
     //constructor
 
@@ -21,6 +21,24 @@ class BaseDatos
             $datosGeneralesBD = $this->servidorBD . $this->nombreBD;
             $conexion = new PDO($datosGeneralesBD, $this->usuario, $this->paswordBD);
             echo ("exito conectandonos a la BD");
+            return $conexion;
+        } catch (PDOException $error) {
+            die("tenemos un problema" . $error->getMessage());
+        }
+    }
+    public function insertarRegistro($consultaSQL)
+    {
+
+        try {
+            //1.construir un puente con la bd
+            $conexion = $this->conectarConBD();
+
+            //2.preparar la bd para que reciba mi consulta
+            $operacion = $conexion->prepare($consultaSQL);
+
+            //3.ejecutar la operacion
+            $resultado = $operacion->execute();
+            return $resultado;
         } catch (PDOException $error) {
             die("tenemos un problema" . $error->getMessage());
         }

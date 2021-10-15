@@ -29,7 +29,7 @@ class Empleado
     public function registrar()
     {
 
-        $consultaSQL = "INSERT INTO empleados(id, nombres, apellidos, email, edad, descripcion, foto) VALUES (' $this->nombres','$this->apellidos','$this->email','$this->edad','$this->descripcion','$this->foto')";
+        $consultaSQL = "INSERT INTO empleados(nombres, apellidos, email, edad, descripcion, foto) VALUES ('$this->nombres','$this->apellidos','$this->email','$this->edad','$this->descripcion','$this->foto')";
 
         return $consultaSQL;
     }

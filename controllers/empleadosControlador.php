@@ -4,6 +4,7 @@
 // Incluir el modelo empleados
 include("../models/BaseDatos.php");
 include("../models/Empleado.php");
+//include("../views/registroUsuario.php");para coger la reuta
 //2. Recoger los modelos y las vistas
 if (isset($_POST["boton"])) {
     $nombre = $_POST["nombre"];
@@ -33,10 +34,25 @@ if (isset($_POST["boton"])) {
 
     //4. Se crea un objeto de la clase Empleado
     $empleado = new Empleado($nombre, $apellido, $email, $edad, $descripcion, $foto);
-    //Acceder al metodo empleado
+    echo ("<br>");
     echo ($empleado->registrar());
 
-    //$baseDatos = new BaseDatos();
+    //5.ejecutar el metodo insertar registro
+    $baseDatos = new BaseDatos();
+    $resultado = $baseDatos->insertarRegistro($empleado->registrar());
+
+    //6. valido el resultado
+    if ($resultado) {
+        echo ("exito en el registro");
+        header("Location:../views/registroUsuario.php");
+    } else {
+        echo ("upps...tenemos un problema");
+    }
+
+    //Acceder al metodo empleado
+    //echo ($empleado->registrar());
+
+    //$baseDatos = new BaseDatos(); ya no es necesario, se hizo en base de datos
     //$baseDatos->conectarConBD();
 } else {
     echo ("No deberias estar aqui");
