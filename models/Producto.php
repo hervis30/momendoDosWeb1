@@ -18,27 +18,27 @@ class Producto
         $this->descripcionProducto = $descripcionProducto;
     }
 
-    public function registrarProducto()
+    public function registrar()
     {
-        $consultaProductoSQL = "INSERT INTO productos( nombre, marca, precio, descripcion) VALUES ('   $this->nombreProducto','$this->marca',' $this->precio','$this->descripcionProducto')";
+        $consultaSQL = "INSERT INTO productos( nombreProducto, marca, precio, descripcionProducto) VALUES ('   $this->nombreProducto','$this->marca',' $this->precio','$this->descripcionProducto')";
 
-        return $consultaProductoSQL;
+        return $consultaSQL;
     }
     //CRUD
-    public function buscarProducto()
+    public function buscar()
     {
-        $consultaProductoSQL = "SELECT*FROM productos";
-        return $consultaProductoSQL;
+        $consultaSQL = "SELECT*FROM productos";
+        return $consultaSQL;
     }
-    public function eliminarProducto($id_producto)
+    public function eliminar($id_producto)
     {
-        $consultaProductoSQL = "DELETE FROM productos WHERE id='$id_producto'";
-        return $consultaProductoSQL;
+        $consultaSQL = "DELETE FROM productos WHERE id='$id_producto'";
+        return $consultaSQL;
     }
-    public function editarProducto($id_producto)
+    public function editar($id_producto)
     {
-        $consultaProductoSQL = "UPDATE productos SET marca='$this->marca',precio='$this->precio'
+        $consultaSQL = "UPDATE productos SET marca='$this->marca',precio='$this->precio'
         WHERE id='$id_producto'";
-        return $consultaProductoSQL;
+        return $consultaSQL;
     }
 }
