@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,27 +53,30 @@
                         <button type="submit" name="boton" class="btn btn-danger">Registrar</button>
                     </form>
                     <div class="col-12 col-md aling-self-end"><img src="../public/img/manchester.png" alt="imagen" class="w-100 img-fluid"></div>
+                    <a href="listaEmpleado.php">ver inventario</a>
                 </div>
             </div>
         </div>
     </main>
 
     <section>
-        <?php  ?>
-        <div class="modal fade" id="modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">la tienda del horror</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h5>PRUEBA</h5>
+        <!--configuracion modal-->
+        <?php if (isset($_SESSION['mensaje'])) : ?>
+            <div class="modal fade" id="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">la tienda del horror</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5><?php echo ($_SESSION['mensaje']) ?></h5>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <?php ?>
+            <?php unset($_SESSION['mensaje']) ?>)
+        <?php endif ?>
     </section>
 
 

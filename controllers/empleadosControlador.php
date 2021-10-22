@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 //1. Incluir el modelo de la base de datos
 // Incluir el modelo empleados
 include("../models/BaseDatos.php");
@@ -43,7 +45,9 @@ if (isset($_POST["boton"])) {
 
     //6. valido el resultado
     if ($resultado) {
-        echo ("exito en el registro");
+        //echo ("exito en el registro");se cambio y reemplazo por mensaje
+        //$mensaje = "exito en el registro"; se quito y reemplazo con $_SESSION
+        $_SESSION['mensaje'] = "exito en el registro";
         header("Location:../views/registroUsuario.php");
     } else {
         echo ("upps...tenemos un problema");

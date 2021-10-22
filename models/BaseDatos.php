@@ -43,4 +43,21 @@ class BaseDatos
             die("tenemos un problema" . $error->getMessage());
         }
     }
+    public function buscarRegistros($consultaSQL)
+    {
+        try {
+            //1.construir un puente con la bd
+            $conexion = $this->conectarConBD();
+
+            //2.preparar la bd para que reciba mi consulta
+            $operacion = $conexion->prepare($consultaSQL);
+            //3.Establecer el formato de los datos consultados
+            $operacion->setFetchMode(PDO::FETCH_ASSOC);
+            //3.ejecutar la operacion
+            $operacion->execute();
+            return $operacion->fetchAll();
+        } catch (PDOException $error) {
+            die("tenemos un problema" . $error->getMessage());
+        }
+    }
 }
